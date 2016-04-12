@@ -1,5 +1,8 @@
 import json
 
+import sys
+import traceback
+
 from django.http import  JsonResponse
 from django.db.models.base import ObjectDoesNotExist
 from django_simplestore.models import Product, CartItem
@@ -16,9 +19,12 @@ def add_product_to_cart(request,product_id):
         data = {"status":"OK"}
         cart = get_cart(request)
         cart.add_product(product)
+        sys.stdout.write("OK Saved:")
         cart.save()
+
     finally:
         data.update(get_cart_dict(request))
+        sys.stdout.write("OK DATA:%r"%data)
         return JsonResponse(data)
 def update_cart(request,product_id,qty):
     data={}
@@ -36,5 +42,5 @@ def update_cart(request,product_id,qty):
     finally:
         data.update(get_cart_dict(request))
         return JsonResponse(data)
-def get_cart(request):
+def get_cart_details(request):
     return JsonResponse(get_cart_dict(request))

@@ -56,6 +56,7 @@ class Page(Model):
     title=CharField(max_length=200)
     slug=CharField(primary_key=True,max_length=200)
     page_html = TextField(default="")
+    menu_order = IntegerField(default=None)
     def __unicode__(self):
         return self.slug
 
