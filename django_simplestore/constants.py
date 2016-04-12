@@ -9,3 +9,4 @@ share-alt resize-full resize-small exclamation-sign gift leaf fire eye-open eye-
 comment magnet chevron-up chevron-down retweet shopping-cart folder-close
 """.split()
 
+ONE_HOUR = 3600 #: Seconds ...

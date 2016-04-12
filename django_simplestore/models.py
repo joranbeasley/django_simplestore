@@ -9,6 +9,10 @@ from django.db.models import Model,CharField,TextField,FloatField,FileField,Emai
     IntegerField, BooleanField, OneToOneField
 from django.contrib.admin import ModelAdmin,site,register
 from colorfield.fields import ColorField
+
+from django_simplestore.constants import ONE_HOUR
+
+
 class ImageLister:
     def __init__(self,directory,extensions=None):
         self.directory = directory
@@ -78,7 +82,7 @@ class Cart(Model):
         for product in products:
             self.add_product(product)
     def ready_for_ship(self):
-        return (time.time()-self.timestamp) > 3600 * 24 #: 24 hours! (in seconds)
+        return (time.time()-self.timestamp) > ONE_HOUR * 24 #: 24 hours! (in seconds)
     def ready_at(self,format_string = "%d%b%Y %H:%M"):
         return datetime.datetime.fromtimestamp(self.timestamp+3600*24).strftime(format_string)
     def total_count(self):
