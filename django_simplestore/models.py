@@ -1,5 +1,10 @@
 import os
 
+import time
+
+import datetime
+import traceback
+
 from django.db.models import Model,CharField,TextField,FloatField,FileField,EmailField, ManyToManyField, ForeignKey, \
     IntegerField, BooleanField, OneToOneField
 from django.contrib.admin import ModelAdmin,site,register
@@ -57,3 +62,34 @@ class PageAdmin(ModelAdmin):
             '/static/grappelli/tinymce/jscripts/tiny_mce/tiny_mce.js',
             '/static/js/tinymce_setup.js',
         ]
+
+
+class Cart(Model):
+    owner = CharField(max_length=200)
+    closed = BooleanField(default=False)
+    status = CharField(max_length=50,default="NEW")
+    timestamp = IntegerField(default=0)
+    def add_product(self,product):
+        item,created = CartItem.objects.get_or_create(cart=self,product=product)
+        if not created:
+            item.quantity += 1
+        item.save()
+    def add_products(self,*products):
+        for product in products:
+            self.add_product(product)
+    def ready_for_ship(self):
+        return (time.time()-self.timestamp) > 3600 * 24 #: 24 hours! (in seconds)
+    def ready_at(self,format_string = "%d%b%Y %H:%M"):
+        return datetime.datetime.fromtimestamp(self.timestamp+3600*24).strftime(format_string)
+    def total_count(self):
+        return sum(item.quantity for item in self.items.all())
+    def total_cost(self):
+        return sum(item.total_cost() for item in self.items.all())
+
+
+class CartItem(Model):
+    product = ForeignKey(Product)
+    quantity = IntegerField(default=1)
+    cart = ForeignKey(Cart,related_name='items')
+    def total_cost(self):
+        return self.quantity*self.product.product_cost
