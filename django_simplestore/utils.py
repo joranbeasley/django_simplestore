@@ -45,7 +45,7 @@ def model_to_dict(instance, fields=None, exclude=None):# pragma: no cover
         elif isinstance(f,ForeignKey):
             try:
                 data[f.name] = model_to_dict(getattr(instance,f.name))
-            except:
+            except (TypeError,ValueError):
                 data[f.name] = f.value_from_object(instance)
         else:
             data[f.name] = f.value_from_object(instance)

@@ -20,9 +20,11 @@ def add_product_to_cart(request,product_id):
         cart = get_cart(request)
         cart.add_product(product)
         cart.save()
-    finally:
-        data.update(get_cart_dict(request))
-        return JsonResponse(data)
+
+    data.update(get_cart_dict(request))
+    return JsonResponse(data)
+
+
 def update_cart(request,product_id,qty):
     data={}
     try:
@@ -32,12 +34,12 @@ def update_cart(request,product_id,qty):
     else:
         data = {"status":"OK"}
         cart = get_cart(request)
-        item,created = CartItem.objects.get_or_create(cart=cart,product=product)
-        if not created:
-            item.quantity += 1
+        item, created = CartItem.objects.get_or_create(cart=cart,product=product)
+        item.quantity = qty
         item.save()
-    finally:
-        data.update(get_cart_dict(request))
-        return JsonResponse(data)
+    data.update(get_cart_dict(request))
+    return JsonResponse(data)
+
+
 def get_cart_details(request):
     return JsonResponse(get_cart_dict(request))

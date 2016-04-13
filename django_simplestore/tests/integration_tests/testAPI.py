@@ -37,6 +37,15 @@ class APIEndpointTests(TestCase):
         self.assertEqual(json_result["status"],"OK")
         self.assertEqual(json_result["total_cost"],product.product_cost+2.23)
         self.assertEqual(json_result["total_count"],2)
+    def test_update_product(self):
+        self.test_add_product()
+        result = self.client.get("/api/v0/cart/update/1/3")
+        json_result = json.loads(result.content)
+        self.assertEqual(json_result["status"],"OK")
+        self.assertEqual(json_result["total_cost"],2.23*3)
+        self.assertEqual(json_result["total_count"],3)
+
+        self.assertEqual(len(json_result["cart_items"]),1)
 
 
 
