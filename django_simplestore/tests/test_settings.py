@@ -111,4 +111,6 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 NOSE_ARGS = [
     '--with-coverage',
     '--cover-package=django_simplestore',
+    '--cover-xml',     # produle XML coverage info
+    '--cover-xml-file=coverage.xml',  # the coverage info file
 ]
