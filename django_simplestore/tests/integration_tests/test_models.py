@@ -45,7 +45,7 @@ class CartTests(TestCase):
         items = set(self.cart.items.all())
         pks = set(item.pk for item in items)
         self.assertEqual(pks.intersection([self.product.pk,self.product2.pk]),pks)
-        for i,item in enumerate(items):
+        for item in items:
             self.assertEqual(item.quantity,1)
             self.assertEqual(item.cart,self.cart)
 
