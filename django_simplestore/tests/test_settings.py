@@ -110,6 +110,7 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 # Tell nose to measure coverage on the 'foo' and 'bar' apps
 NOSE_ARGS = [
     '--with-coverage',
+    '--verbosity=3',
     '--cover-package=django_simplestore',
     '--cover-xml',     # produle XML coverage info
     '--cover-xml-file=coverage.xml',  # the coverage info file
