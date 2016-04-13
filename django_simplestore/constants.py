@@ -1,4 +1,4 @@
-bootstrap_icon_choices = """asterisk plus euro eur minus cloud envelope pencil glass music search heart star star-empty user
+BOOTSTRAP_ICON_CHOICES = """asterisk plus euro eur minus cloud envelope pencil glass music search heart star star-empty user
 film th-large th th-list ok remove zoom-in zoom-out off signal cog trash home file  time road download-alt download upload
 inbox play-circle repeat refresh list-alt lock flag headphones volume-off volume-down volume-up qrcode barcode tag tags
 book bookmark  print camera font bold italic text-height text-width align-left align-center align-right align-justify list
