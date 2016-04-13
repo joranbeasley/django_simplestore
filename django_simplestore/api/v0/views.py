@@ -19,12 +19,9 @@ def add_product_to_cart(request,product_id):
         data = {"status":"OK"}
         cart = get_cart(request)
         cart.add_product(product)
-        sys.stdout.write("OK Saved:")
         cart.save()
-
     finally:
         data.update(get_cart_dict(request))
-        sys.stdout.write("OK DATA:%r"%data)
         return JsonResponse(data)
 def update_cart(request,product_id,qty):
     data={}

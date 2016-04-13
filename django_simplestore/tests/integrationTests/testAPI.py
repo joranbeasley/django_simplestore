@@ -37,9 +37,6 @@ class APIEndpointTests(TestCase):
         self.assertEqual(json_result["status"],"OK")
         self.assertEqual(json_result["total_cost"],product.product_cost+2.23)
         self.assertEqual(json_result["total_count"],2)
-        result = self.client.get("/api/v0/cart/add/1")
-        json_result = json.loads(result.content)
-        sys.stdout.write("\n\n%s"%json_result)
 
 
 
