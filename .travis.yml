@@ -9,4 +9,4 @@ before_script:
   #– sed -i -e 's/getpass.getuser()/"postgres"/g' capomastro/local_settings.py
   – python manage.py syncdb –migrate –noinput
 script:
-– python manage.py test
+  – python manage.py test django_simplestore.tests
