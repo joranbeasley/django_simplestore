@@ -3,11 +3,9 @@ import os
 import time
 
 import datetime
-import traceback
 
-from django.db.models import Model,CharField,TextField,FloatField,FileField,EmailField, ManyToManyField, ForeignKey, \
-    IntegerField, BooleanField, OneToOneField
-from django.contrib.admin import ModelAdmin,site,register
+from django.db.models import Model,CharField,TextField,FloatField, ForeignKey, IntegerField, BooleanField
+
 from colorfield.fields import ColorField
 
 from django_simplestore.constants import ONE_HOUR
