@@ -4,3 +4,4 @@ install: "pip install -r requirements.txt"
 script:
  - python runtests.py
  - ls -la
+ - python-codacy-coverage -r coverage.xml
