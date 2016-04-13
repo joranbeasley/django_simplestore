@@ -3,3 +3,4 @@ django-colorfield
 django-extensions
 django-nose
 coverage
+codacy-coverage
