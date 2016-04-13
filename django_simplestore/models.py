@@ -16,8 +16,8 @@ class ImageLister:
         self.directory = directory
         self.extensions = extensions
     def __iter__(self):
-        def match_extension(n):
-            return not self.extensions or any(n.lower().endswith(e.lower()) for e in self.extensions)
+        def match_extension(ext):
+            return not self.extensions or any(ext.lower().endswith(e.lower()) for e in self.extensions)
         matches = os.listdir(self.directory)
         return ((m,m) for m in matches if match_extension(m))
 
