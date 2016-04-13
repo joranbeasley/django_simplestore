@@ -1,6 +1,3 @@
-import os
-
-import sys
 from django.test import TestCase
 from django_simplestore.models import Product,Page
 

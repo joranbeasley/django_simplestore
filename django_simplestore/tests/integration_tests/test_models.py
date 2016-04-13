@@ -1,5 +1,5 @@
 from django.test import TestCase
-from django_simplestore.models import Product,Page
+from django_simplestore.models import Product
 from django_simplestore.utils import get_cart, get_cart_dict
 
 

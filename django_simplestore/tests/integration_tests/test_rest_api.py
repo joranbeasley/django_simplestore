@@ -1,9 +1,7 @@
-import sys
 from django.test import TestCase
 import json
-
 from django_simplestore.models import Product
-from django_simplestore.utils import get_cart, get_cart_dict
+
 
 
 class APIEndpointTests(TestCase):

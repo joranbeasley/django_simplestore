@@ -1,7 +1,4 @@
-import json
 
-import sys
-import traceback
 
 from django.http import  JsonResponse
 from django.db.models.base import ObjectDoesNotExist
@@ -34,7 +31,8 @@ def update_cart(request,product_id,qty):
     else:
         data = {"status":"OK"}
         cart = get_cart(request)
-        item, created = CartItem.objects.get_or_create(cart=cart,product=product)
+        item, _ = CartItem.objects.get_or_create(cart=cart,product=product)
+
         item.quantity = qty
         item.save()
     data.update(get_cart_dict(request))

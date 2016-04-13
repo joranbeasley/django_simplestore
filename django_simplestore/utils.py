@@ -1,4 +1,4 @@
-import traceback
+
 import uuid
 from itertools import chain
 
