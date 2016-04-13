@@ -1,3 +1,5 @@
 django
 django-colorfield
 django-extensions
+django-nose
+coverage

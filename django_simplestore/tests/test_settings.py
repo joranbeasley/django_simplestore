@@ -38,7 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_simplestore',
-    # 'django_nose',
+    'django_nose',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -111,4 +111,5 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 NOSE_ARGS = [
     '--with-coverage',
     '--cover-package=django_simplestore',
+    '--output=xml'
 ]
