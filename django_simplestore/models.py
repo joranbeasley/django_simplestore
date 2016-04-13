@@ -34,23 +34,7 @@ class Product(Model):
     def __unicode__(self):
         return u"<Product name='%s' cost='$%0.2f'>"%(self.product_name,self.product_cost)
 
-@register(Product)
-class ProductAdmin(ModelAdmin):
-    class Media:
-        js = [
-            'js/file_upload_select.js'
-        ]
-    fieldsets = (
-        ('Product Background Image', {
-             'fields': ('background_image',),
-             'classes': ('file-select',)
-             }
-        ),
-       ('Product Details', {
-             'fields': ('product_name title_color product_cost product_description product_ingredients'.split())
-             }
-        ),
-    )
+
 
 class Page(Model):
     title=CharField(max_length=200)
@@ -60,13 +44,6 @@ class Page(Model):
     def __unicode__(self):
         return self.slug
 
-@register(Page)
-class PageAdmin(ModelAdmin):
-    class Media:
-        js = [
-            '/static/grappelli/tinymce/jscripts/tiny_mce/tiny_mce.js',
-            '/static/js/tinymce_setup.js',
-        ]
 
 
 class Cart(Model):
