@@ -14,6 +14,8 @@ from django_simplestore.constants import ONE_HOUR
 class ImageLister:
     def __init__(self,directory,extensions=None):
         self.directory = directory
+        if isinstance(extensions,basestring):
+            extensions = [extensions,]
         self.extensions = extensions
     def __iter__(self):
         def match_extension(ext):
@@ -21,7 +23,7 @@ class ImageLister:
         try:
             matches = os.listdir(self.directory)
         except OSError:
-            return ["Error: %s"%self.directory]
+            return iter(("Error: %s"%self.directory,))
         return ((m,m) for m in matches if match_extension(m))
 
 class Product(Model):
@@ -61,8 +63,10 @@ class Cart(Model):
         for product in products:
             self.add_product(product)
     def ready_for_ship(self):
-        return (time.time()-self.timestamp) > ONE_HOUR * 24 #: 24 hours! (in seconds)
+        return self.timestamp > 0 and (time.time()-self.timestamp) > ONE_HOUR * 24 #: 24 hours! (in seconds)
     def ready_at(self,format_string = "%d%b%Y %H:%M"):
+        if self.timestamp == 0:
+            return "Not Paid!"
         return datetime.datetime.fromtimestamp(self.timestamp+3600*24).strftime(format_string)
     def total_count(self):
         return sum(item.quantity for item in self.items.all())

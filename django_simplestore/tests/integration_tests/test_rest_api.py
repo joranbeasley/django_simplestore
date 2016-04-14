@@ -44,6 +44,12 @@ class APIEndpointTests(TestCase):
         self.assertEqual(json_result["total_count"],3)
 
         self.assertEqual(len(json_result["cart_items"]),1)
+    def test_update_nonexisting(self):
+        result = self.client.get("/api/v0/cart/update/1/3")
+        json_result = json.loads(result.content)
+        self.assertEqual(json_result['status'],'Fail')
+        self.assertEqual(json_result["total_cost"],0)
+        self.assertEqual(json_result["total_count"],0)
 
 
 
