@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+import sys
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -38,7 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_simplestore',
-    # 'django_nose',
+    'django_nose',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -104,11 +106,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
+#
 # TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 #
 # # Tell nose to measure coverage on the 'foo' and 'bar' apps
 # NOSE_ARGS = [
 #     '--with-coverage',
 #     '--cover-package=django_simplestore',
+#     '--cover-xml-file=coverage.xml'
 # ]
+# print >> sys.stderr,"OK SETup??"
