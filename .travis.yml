@@ -3,7 +3,7 @@ python: 2.7
 install: "pip install -r requirements.txt"
 script:
  - coverage run manage.py test
- - coverage XML
+ - coverage xml
 after_success:
  - codecov
  - python-codacy-coverage -r coverage.xml
