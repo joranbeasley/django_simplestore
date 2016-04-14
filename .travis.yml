@@ -5,3 +5,4 @@ script:
  - python runtests.py
  - ls -la
  - python-codacy-coverage -r coverage.xml
+after_success: codecov
